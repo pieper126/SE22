@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace SE22
 {
-    public partial class About : Page
+    public partial class NewPost : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SE22V1", "SE22V1\SE22V1.csproj", "{F4F399EB-EB08-4555-9999-FB6E8849719E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SE22V1.Tests", "SE22V1.Tests\SE22V1.Tests.csproj", "{A8F9CF85-0955-4CAE-9185-D200F17A11B3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4F399EB-EB08-4555-9999-FB6E8849719E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4F399EB-EB08-4555-9999-FB6E8849719E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4F399EB-EB08-4555-9999-FB6E8849719E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4F399EB-EB08-4555-9999-FB6E8849719E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8F9CF85-0955-4CAE-9185-D200F17A11B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8F9CF85-0955-4CAE-9185-D200F17A11B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8F9CF85-0955-4CAE-9185-D200F17A11B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8F9CF85-0955-4CAE-9185-D200F17A11B3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -82,13 +82,14 @@ namespace SE22
                 while (dataReaderThread.Read())
                 {
                     List<Post> posts = new List<Post>();
-                    string PostQuery = "SELECT * FROM POST WHERE THREADID =" + dataReaderThread["threadID"];
+                    string threadID = dataReaderThread["threadID"].ToString();
+                    string PostQuery = "SELECT * FROM POST WHERE THREADID =" + threadID;
                     OracleCommand threadCommand = new OracleCommand(PostQuery, conn);
 
                     dataReaderPosts = threadCommand.ExecuteReader();
-                    while (dataReaderThread.Read())
+                    while (dataReaderPosts.Read())
 	                {
-	                    posts.Add(new Post(Convert.ToInt32(dataReaderPosts["postsID"].ToString()), dataReaderPosts["inhoud"].ToString()));
+	                    posts.Add(new Post(Convert.ToInt32(dataReaderPosts["postID"].ToString()), dataReaderPosts["inhoud"].ToString()));
 	                }
 
                     threads.Add(new ForumThread(Convert.ToInt32(dataReaderThread["threadID"].ToString()), posts));

@@ -202,6 +202,39 @@ namespace SE22
             }
         }
 
+        public static void AlterThread(int id, List<string> changes, List<string> paramaterToChanged)
+        {
+            OracleConnection conn = MakeConnection();
+            conn.Open();
+
+            string mainQuery = "UPDATE THREAD SET";
+
+            for (int i = 0; i < changes.Count; i++)
+			{
+			    mainQuery += paramaterToChanged[i];
+                mainQuery += " = " + changes[i];
+			}
+
+            mainQuery += "WHERE POSTID = :POSTID";
+
+            OracleCommand command = new OracleCommand(mainQuery, conn);
+            command.Parameters.Add(new OracleParameter("POSTID", id));
+
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         private static OracleConnection MakeConnection()
         {
             //System.Configuration.Configuration rootWebConfig =

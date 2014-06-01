@@ -63,7 +63,7 @@ namespace SE22
             return returnUser;
         }
 
-        public List<Thread> UpdateThreads()
+        public static List<ForumThread> UpdateThreads()
         {
             OracleConnection conn = MakeConnection();
             conn.Open();
@@ -104,12 +104,102 @@ namespace SE22
                 conn.Close();
             }
 
-            return returnUser;
+            return threads;
         }
 
-        public Thread UpdateThread(int id)
+        public static ForumThread UpdateThread(int id)
         {
+            OracleConnection conn = MakeConnection();
+            conn.Open();
 
+            string mainQuery = "SELECT * FROM THREAD WHERE THREADID = :THREADID";
+
+            OracleCommand command = new OracleCommand(mainQuery, conn);
+            command.Parameters.Add(new OracleParameter("THREADID", id));
+            OracleDataReader dataReaderThread;
+            OracleDataReader dataReaderPosts;
+
+            ForumThread thread = null;
+
+            try
+            {
+                dataReaderThread = command.ExecuteReader();
+                while (dataReaderThread.Read())
+                {
+                    List<Post> posts = new List<Post>();
+                    string PostQuery = "SELECT * FROM POST WHERE THREADID =" + dataReaderThread["threadID"];
+                    OracleCommand threadCommand = new OracleCommand(PostQuery, conn);
+
+                    dataReaderPosts = threadCommand.ExecuteReader();
+                    while (dataReaderThread.Read())
+                    {
+                        posts.Add(new Post(Convert.ToInt32(dataReaderPosts["postsID"].ToString()), dataReaderPosts["inhoud"].ToString()));
+                    }
+
+                    thread = new ForumThread(Convert.ToInt32(dataReaderThread["threadID"].ToString()), posts);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return thread;
+        }
+
+        public static void DeletePost(int id)
+        {
+            OracleConnection conn = MakeConnection();
+            conn.Open();
+
+            string mainQuery = "DELETE FROM POST WHERE POSTID = :POSTID";
+
+            OracleCommand command = new OracleCommand(mainQuery, conn);
+            command.Parameters.Add(new OracleParameter("POSTID", id));
+
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public static void DeleteThread(int id)
+        {
+            OracleConnection conn = MakeConnection();
+            conn.Open();
+
+            string mainQuery = "DELETE FROM THREAD WHERE THREADID = :THREADID";
+
+            OracleCommand command = new OracleCommand(mainQuery, conn);
+            command.Parameters.Add(new OracleParameter("POSTID", id));
+
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         private static OracleConnection MakeConnection()

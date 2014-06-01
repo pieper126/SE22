@@ -235,6 +235,44 @@ namespace SE22
             }
         }
 
+        public static List<ForumCategory> UpdateCategorys()
+        {
+            OracleConnection conn = MakeConnection();
+            conn.Open();
+
+            string mainQuery = "SELECT * FROM FORUMCATEGORIE";
+
+            OracleCommand command = new OracleCommand(mainQuery, conn);
+            OracleDataReader dataReader;
+
+            List<ForumCategory> categorys = new List<ForumCategory>();
+
+            try
+            {
+                dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    ForumCategory parentCategory = null;
+
+                    if(dataReader["PARENTCATEGORIE"] != null)
+                    {
+                        parentCategory = categorys.Find(category => category.ID == Convert.ToInt32(dataReader["PARENTCATEGORIE"].ToString()));
+                    }
+                    categorys.Add(new ForumCategory(Convert.ToInt32(dataReader["FORUMCATEGORIEID"].ToString()), parentCategory));
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return categorys;
+        }
         private static OracleConnection MakeConnection()
         {
             //System.Configuration.Configuration rootWebConfig =

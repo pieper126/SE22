@@ -11,7 +11,19 @@ namespace SE22
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(MainAdministration.Threads.Count == 0)
+            {
+                while(MainAdministration.Threads.Count == 0)
+                {
+                    //
+                }
+            }
+            foreach(ForumCategory gategory in MainAdministration.Categorys)
+            {
+                string something = string.Empty;
+                string something1 = string.Empty;
+                LblCategoryName.Text = gategory.Name;
+            }
         }
     }
 }

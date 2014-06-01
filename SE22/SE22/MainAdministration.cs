@@ -12,9 +12,12 @@ namespace SE22
 
         }
 
-        public List<Category> Categorys { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public static List<ForumCategory> Categorys { get; private set; }
 
-        public List<Thread> Threads { get; set; }
+        public static List<ForumThread> Threads { get; private set; }
 
         /// <summary>
         /// Makes a new user
@@ -22,34 +25,40 @@ namespace SE22
         /// <param name="username">username this person uses</param>
         /// <param name="email">email of this person</param>
         /// <param name="rights">rights this person holds</param>
-        public void AddUser(string username, string email, List<Rights> rights)
+        public static void AddUser(string username, string email, List<Rights> rights)
         {
 
         }
 
-        public void CreateNewThread(User user, string content, int id)
+        public static void CreateNewThread(User user, string content, int id)
         {
 
         }
 
-        public void DeletePost(int id)
+        public static void DeletePost(int id)
         {
 
         }
 
-        public void DeletePost(Post post)
+        public static void DeletePost(Post post)
+        {
+            DatabaseManager.DeletePost(post.ID);
+        }
+
+        public static void DeleteThread(int id)
         {
 
         }
 
-        public void DeleteThread(int id)
+        public static void DeleteThread(Thread thread)
         {
 
         }
 
-        public void DeleteThread(Thread thread)
+        public static void StartUp()
         {
-
+            Categorys = DatabaseManager.UpdateCategorys();
+            Threads = DatabaseManager.UpdateThreads();
         }
     }
 }

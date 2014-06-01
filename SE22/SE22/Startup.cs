@@ -9,6 +9,7 @@ namespace SE22
         public void Configuration(IAppBuilder app) 
         {
             ConfigureAuth(app);
+            MainAdministration.StartUp();
         }
     }
 }

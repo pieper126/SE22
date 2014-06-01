@@ -92,7 +92,9 @@ namespace SE22
 	                    posts.Add(new Post(Convert.ToInt32(dataReaderPosts["postID"].ToString()), dataReaderPosts["inhoud"].ToString()));
 	                }
 
-                    threads.Add(new ForumThread(Convert.ToInt32(dataReaderThread["threadID"].ToString()), posts));
+                    ForumCategory category = MainAdministration.Categorys.Find(x => x.ID == Convert.ToInt32(dataReaderThread["FORUMCATEGORIEID"].ToString()));
+
+                    threads.Add(new ForumThread(Convert.ToInt32(dataReaderThread["threadID"].ToString()), posts, category));
                 }
             }
             catch (Exception)
@@ -137,7 +139,9 @@ namespace SE22
                         posts.Add(new Post(Convert.ToInt32(dataReaderPosts["postsID"].ToString()), dataReaderPosts["inhoud"].ToString()));
                     }
 
-                    thread = new ForumThread(Convert.ToInt32(dataReaderThread["threadID"].ToString()), posts);
+                    ForumCategory category = MainAdministration.Categorys.Find(x => x.ID == Convert.ToInt32(dataReaderThread["FORUMCATEGORIEID"].ToString()));
+
+                    thread = new ForumThread(Convert.ToInt32(dataReaderThread["threadID"].ToString()), posts, category);
                 }
             }
             catch (Exception)
@@ -255,11 +259,11 @@ namespace SE22
                 {
                     ForumCategory parentCategory = null;
 
-                    if(dataReader["PARENTCATEGORIE"] != null)
+                    if(dataReader["PARENTCATEGORIE"] != DBNull.Value)
                     {
                         parentCategory = categorys.Find(category => category.ID == Convert.ToInt32(dataReader["PARENTCATEGORIE"].ToString()));
                     }
-                    categorys.Add(new ForumCategory(Convert.ToInt32(dataReader["FORUMCATEGORIEID"].ToString()), parentCategory));
+                    categorys.Add(new ForumCategory(Convert.ToInt32(dataReader["FORUMCATEGORIEID"].ToString()), parentCategory, dataReader[2].ToString()));
                 }
             }
             catch (Exception)

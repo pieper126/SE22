@@ -7,18 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace SE22
 {
-    public partial class Category : System.Web.UI.Page
+    public partial class Thread : System.Web.UI.Page
     {
-        string Something = "<h1> hallo </h1>";
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            Page.Server.Transfer("NewThread.aspx");
         }
     }
 }

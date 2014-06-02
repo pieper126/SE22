@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Oracle.DataAccess.Client;
-using Oracle.DataAccess.Types;
-using System.Web.Configuration;
-
-namespace SE22
+﻿namespace SE22
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using Oracle.DataAccess.Client;
+    using Oracle.DataAccess.Types;
+    using System.Web.Configuration;
+
+    /// <summary>
+    /// manages all data in the database
+    /// </summary>
     public class DatabaseManager
     {
         /// <summary>
@@ -15,7 +18,7 @@ namespace SE22
         /// </summary>
         /// <param name="username">username of the user you are trying to log in</param>
         /// <param name="password">password of the user you are trying to log in</param>
-        /// <returns></returns>
+        /// <returns>Gives back the user if he is verified</returns>
         public static User LogIn(string username, string password)
         {
             OracleConnection conn = MakeConnection();
@@ -44,6 +47,7 @@ namespace SE22
 	            {
 		            functions.Add(Rights.Editor);
 	            }
+
                 dataReader = moderatorCommand.ExecuteReader();
                 if (dataReader.HasRows)
 	            {
@@ -57,8 +61,7 @@ namespace SE22
                 }
             }
             catch (Exception)
-            {
-                
+            {                
                 throw;
             }
             finally
@@ -93,8 +96,8 @@ namespace SE22
                 {
                     List<Post> posts = new List<Post>();
                     string threadID = dataReaderThread["threadID"].ToString();
-                    string PostQuery = "SELECT * FROM POST WHERE THREADID =" + threadID;
-                    OracleCommand threadCommand = new OracleCommand(PostQuery, conn);
+                    string postQuery = "SELECT * FROM POST WHERE THREADID =" + threadID;
+                    OracleCommand threadCommand = new OracleCommand(postQuery, conn);
 
                     dataReaderPosts = threadCommand.ExecuteReader();
                     while (dataReaderPosts.Read())
@@ -109,7 +112,6 @@ namespace SE22
             }
             catch (Exception)
             {
-
                 throw;
             }
             finally
@@ -145,8 +147,8 @@ namespace SE22
                 while (dataReaderThread.Read())
                 {
                     List<Post> posts = new List<Post>();
-                    string PostQuery = "SELECT * FROM POST WHERE THREADID =" + dataReaderThread["threadID"];
-                    OracleCommand threadCommand = new OracleCommand(PostQuery, conn);
+                    string postQuery = "SELECT * FROM POST WHERE THREADID =" + dataReaderThread["threadID"];
+                    OracleCommand threadCommand = new OracleCommand(postQuery, conn);
 
                     dataReaderPosts = threadCommand.ExecuteReader();
                     while (dataReaderThread.Read())
@@ -161,7 +163,6 @@ namespace SE22
             }
             catch (Exception)
             {
-
                 throw;
             }
             finally
@@ -192,7 +193,6 @@ namespace SE22
             }
             catch (Exception)
             {
-
                 throw;
             }
             finally
@@ -221,7 +221,6 @@ namespace SE22
             }
             catch (Exception)
             {
-
                 throw;
             }
             finally
@@ -260,7 +259,6 @@ namespace SE22
             }
             catch (Exception)
             {
-
                 throw;
             }
             finally
@@ -270,9 +268,9 @@ namespace SE22
         }
 
         /// <summary>
-        /// Gets the most recent Forum Categorys
+        /// Gets the most recent Forum Category's
         /// </summary>
-        /// <returns>forum categorys</returns>
+        /// <returns>forum category's</returns>
         public static List<ForumCategory> UpdateCategorys()
         {
             OracleConnection conn = MakeConnection();
@@ -292,16 +290,16 @@ namespace SE22
                 {
                     ForumCategory parentCategory = null;
 
-                    if(dataReader["PARENTCATEGORIE"] != DBNull.Value)
+                    if (dataReader["PARENTCATEGORIE"] != DBNull.Value)
                     {
                         parentCategory = categorys.Find(category => category.ID == Convert.ToInt32(dataReader["PARENTCATEGORIE"].ToString()));
                     }
+
                     categorys.Add(new ForumCategory(Convert.ToInt32(dataReader["FORUMCATEGORIEID"].ToString()), parentCategory, dataReader[2].ToString()));
                 }
             }
             catch (Exception)
             {
-
                 throw;
             }
             finally

@@ -21,9 +21,18 @@ namespace SE22.Account
         {
             if (IsValid)
             {
-                // Validate the user password
-                var manager = new UserManager();
-                ApplicationUser user = manager.Find(UserName.Text, Password.Text);
+                SE22.User user = null;
+
+                try
+                {
+                    user = MainAdministration.Inlog(UserName.Text, Password.Text);
+                    Session["user"] = user;
+                }
+                catch (Exception)
+                {
+                    FailureText.Text = "Wasn't able to contact the server!";
+                }
+
                 if (user != null)
                 {
                     IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);

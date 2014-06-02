@@ -57,7 +57,7 @@
                 dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    returnUser = new User(dataReader["USERNAME"].ToString(), dataReader["NAAM"].ToString(), dataReader["email"].ToString(), functions);
+                    returnUser = new User(dataReader["USERNAME"].ToString(), dataReader["email"].ToString(), functions);
                 }
             }
             catch (Exception)

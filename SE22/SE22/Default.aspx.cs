@@ -20,9 +20,7 @@ namespace SE22
             }
             foreach(ForumCategory gategory in MainAdministration.Categorys)
             {
-                string something = string.Empty;
-                string something1 = string.Empty;
-                LblCategoryName.Text = gategory.Name;
+
             }
         }
     }

@@ -60,5 +60,20 @@ namespace SE22
             Categorys = DatabaseManager.UpdateCategorys();
             Threads = DatabaseManager.UpdateThreads();
         }
+
+        public static User Inlog(string username, string password)
+        {
+            User user = null;
+
+            try
+            {
+                user = DatabaseManager.LogIn(username, password);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return user;
+        }
     }
 }

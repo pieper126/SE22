@@ -10,6 +10,12 @@ namespace SE22
 {
     public class DatabaseManager
     {
+        /// <summary>
+        /// checks if the given user 
+        /// </summary>
+        /// <param name="username">username of the user you are trying to log in</param>
+        /// <param name="password">password of the user you are trying to log in</param>
+        /// <returns></returns>
         public static User LogIn(string username, string password)
         {
             OracleConnection conn = MakeConnection();
@@ -63,6 +69,10 @@ namespace SE22
             return returnUser;
         }
 
+        /// <summary>
+        /// gives the most recent 
+        /// </summary>
+        /// <returns>most recent version of all threads</returns>
         public static List<ForumThread> UpdateThreads()
         {
             OracleConnection conn = MakeConnection();
@@ -110,6 +120,11 @@ namespace SE22
             return threads;
         }
 
+        /// <summary>
+        /// Gives the most recent version of the given thread
+        /// </summary>
+        /// <param name="id">id is used to identify the thread</param>
+        /// <returns>the most recent version of the thread</returns>
         public static ForumThread UpdateThread(int id)
         {
             OracleConnection conn = MakeConnection();
@@ -157,6 +172,10 @@ namespace SE22
             return thread;
         }
 
+        /// <summary>
+        /// Deletes the given post
+        /// </summary>
+        /// <param name="id">id used to identify the post</param>
         public static void DeletePost(int id)
         {
             OracleConnection conn = MakeConnection();
@@ -182,6 +201,10 @@ namespace SE22
             }
         }
 
+        /// <summary>
+        /// deletes the given thread
+        /// </summary>
+        /// <param name="id"> id used to identify the thread</param>
         public static void DeleteThread(int id)
         {
             OracleConnection conn = MakeConnection();
@@ -207,6 +230,12 @@ namespace SE22
             }
         }
 
+        /// <summary>
+        /// Changes the thread
+        /// </summary>
+        /// <param name="id">id used too identify the</param>
+        /// <param name="changes">all changes in the same order as the parameters</param>
+        /// <param name="paramaterToChanged">all parameters in the same order as the changes</param>
         public static void AlterThread(int id, List<string> changes, List<string> paramaterToChanged)
         {
             OracleConnection conn = MakeConnection();
@@ -240,6 +269,10 @@ namespace SE22
             }
         }
 
+        /// <summary>
+        /// Gets the most recent Forum Categorys
+        /// </summary>
+        /// <returns>forum categorys</returns>
         public static List<ForumCategory> UpdateCategorys()
         {
             OracleConnection conn = MakeConnection();
@@ -278,13 +311,14 @@ namespace SE22
 
             return categorys;
         }
+
+        /// <summary>
+        /// Makes the Database connection
+        /// </summary>
+        /// <returns>Returns the database connection</returns>
         private static OracleConnection MakeConnection()
         {
-            //System.Configuration.Configuration rootWebConfig =
-            //System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("Web.config");
-            //System.Configuration.ConnectionStringSettings connstring = rootWebConfig.ConnectionStrings["DefaultConnection"];
-            //return new OracleConnection(connstring.ToString());
-            return new OracleConnection("User Id= dbi295793;Password= IUSCsQWJ11;Data Source=//192.168.15.50:1521/fhictora;");
+            return new OracleConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         }
     }
 }

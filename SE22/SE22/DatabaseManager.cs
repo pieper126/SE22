@@ -107,7 +107,7 @@
 
                     ForumCategory category = MainAdministration.Categorys.Find(x => x.ID == Convert.ToInt32(dataReaderThread["FORUMCATEGORIEID"].ToString()));
 
-                    threads.Add(new ForumThread(Convert.ToInt32(dataReaderThread["threadID"].ToString()), posts, category));
+                    threads.Add(new ForumThread(Convert.ToInt32(dataReaderThread["threadID"].ToString()), posts, category, dataReaderThread["THREADNAME"].ToString()));
                 }
             }
             catch (Exception)
@@ -151,14 +151,14 @@
                     OracleCommand threadCommand = new OracleCommand(postQuery, conn);
 
                     dataReaderPosts = threadCommand.ExecuteReader();
-                    while (dataReaderThread.Read())
+                    while (dataReaderPosts.Read())
                     {
-                        posts.Add(new Post(Convert.ToInt32(dataReaderPosts["postsID"].ToString()), dataReaderPosts["inhoud"].ToString()));
+                        posts.Add(new Post(Convert.ToInt32(dataReaderPosts["postID"].ToString()), dataReaderPosts["inhoud"].ToString()));
                     }
 
                     ForumCategory category = MainAdministration.Categorys.Find(x => x.ID == Convert.ToInt32(dataReaderThread["FORUMCATEGORIEID"].ToString()));
 
-                    thread = new ForumThread(Convert.ToInt32(dataReaderThread["threadID"].ToString()), posts, category);
+                    thread = new ForumThread(Convert.ToInt32(dataReaderThread["threadID"].ToString()), posts, category, dataReaderThread["THREADNAME"].ToString());
                 }
             }
             catch (Exception)
@@ -323,7 +323,7 @@
             string mainQuery = "SELECT * FROM THREAD WHERE FORUMCATEGORIEID = :ID";
 
             OracleCommand command = new OracleCommand(mainQuery, conn);
-            command.Parameters.Add(new OracleParameter("FORUMCATEGORIEID", id));
+            command.Parameters.Add(new OracleParameter("ID", id));
             OracleDataReader dataReaderThread;
             OracleDataReader dataReaderPosts;
 
@@ -335,18 +335,18 @@
                 while (dataReaderThread.Read())
                 {
                     List<Post> posts = new List<Post>();
-                    string postQuery = "SELECT * FROM POST WHERE THREADID =" + dataReaderThread["threadID"];
+                    string postQuery = "SELECT * FROM POST WHERE THREADID =" + dataReaderThread["THREADID"];
                     OracleCommand threadCommand = new OracleCommand(postQuery, conn);
 
                     dataReaderPosts = threadCommand.ExecuteReader();
-                    while (dataReaderThread.Read())
+                    while (dataReaderPosts.Read())
                     {
-                        posts.Add(new Post(Convert.ToInt32(dataReaderPosts["postsID"].ToString()), dataReaderPosts["inhoud"].ToString()));
+                        posts.Add(new Post(Convert.ToInt32(dataReaderPosts["postID"].ToString()), dataReaderPosts["inhoud"].ToString()));
                     }
 
                     ForumCategory category = MainAdministration.Categorys.Find(x => x.ID == Convert.ToInt32(dataReaderThread["FORUMCATEGORIEID"].ToString()));
 
-                    threads.Add(new ForumThread(Convert.ToInt32(dataReaderThread["threadID"].ToString()), posts, category));
+                    threads.Add(new ForumThread(Convert.ToInt32(dataReaderThread["threadID"].ToString()), posts, category, dataReaderThread["THREADNAME"].ToString()));
                 }
             }
             catch (Exception)

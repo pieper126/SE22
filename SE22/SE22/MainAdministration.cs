@@ -75,5 +75,20 @@ namespace SE22
             }
             return user;
         }
+
+        public static ForumCategory UpdateCategory(int ID)
+        {
+            return DatabaseManager.UpdateCategory(ID);
+        }
+
+        public static ForumThread UpdateThread(int ID)
+        {
+            return DatabaseManager.UpdateThread(ID);
+        }
+
+        public static int NumberofThreadsPerCategory(ForumCategory category)
+        {
+            return (Threads.FindAll(x => x.Category.ID == category.ID)).Count;
+        }
     }
 }

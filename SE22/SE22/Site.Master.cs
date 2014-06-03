@@ -68,7 +68,16 @@ namespace SE22
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["user"] != null)
+            {
+                anonymous.Visible = false;
+                Loggedin.Visible = true;                
+            }
+            else
+            {
+                Loggedin.Visible = false;
+                anonymous.Visible = true;
+            }
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)

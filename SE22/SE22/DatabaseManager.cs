@@ -311,6 +311,57 @@
         }
 
         /// <summary>
+        /// gives back the most recent version of a category
+        /// </summary>
+        /// <param name="ID">ID used to identify the Category</param>
+        /// <returns>Most recent version of category</returns>
+        public static List<ForumThread> GiveAllThreadsOfAGivenCategory(int id)
+        {
+            OracleConnection conn = MakeConnection();
+            conn.Open();
+
+            string mainQuery = "SELECT * FROM THREAD WHERE FORUMCATEGORIEID = :ID";
+
+            OracleCommand command = new OracleCommand(mainQuery, conn);
+            command.Parameters.Add(new OracleParameter("FORUMCATEGORIEID", id));
+            OracleDataReader dataReaderThread;
+            OracleDataReader dataReaderPosts;
+
+            List<ForumThread> threads = new List<ForumThread>();
+
+            try
+            {
+                dataReaderThread = command.ExecuteReader();
+                while (dataReaderThread.Read())
+                {
+                    List<Post> posts = new List<Post>();
+                    string postQuery = "SELECT * FROM POST WHERE THREADID =" + dataReaderThread["threadID"];
+                    OracleCommand threadCommand = new OracleCommand(postQuery, conn);
+
+                    dataReaderPosts = threadCommand.ExecuteReader();
+                    while (dataReaderThread.Read())
+                    {
+                        posts.Add(new Post(Convert.ToInt32(dataReaderPosts["postsID"].ToString()), dataReaderPosts["inhoud"].ToString()));
+                    }
+
+                    ForumCategory category = MainAdministration.Categorys.Find(x => x.ID == Convert.ToInt32(dataReaderThread["FORUMCATEGORIEID"].ToString()));
+
+                    threads.Add(new ForumThread(Convert.ToInt32(dataReaderThread["threadID"].ToString()), posts, category));
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return threads;
+        }
+
+        /// <summary>
         /// Makes the Database connection
         /// </summary>
         /// <returns>Returns the database connection</returns>

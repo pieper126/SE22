@@ -23,6 +23,8 @@ namespace SE22
 
         public string Name { get; private set; }
 
+        public string Username { get; private set; }
+
         public void AddPost(Post post, User user)
         {
 

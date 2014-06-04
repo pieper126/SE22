@@ -76,9 +76,9 @@ namespace SE22
             return user;
         }
 
-        public static ForumCategory UpdateCategory(int ID)
+        public static List<ForumThread> GiveAllThreadsOfAGivenCategory(int id)
         {
-            return DatabaseManager.UpdateCategory(ID);
+            return DatabaseManager.GiveAllThreadsOfAGivenCategory(id);
         }
 
         public static ForumThread UpdateThread(int ID)

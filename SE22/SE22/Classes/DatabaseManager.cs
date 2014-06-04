@@ -102,7 +102,7 @@
                     dataReaderPosts = threadCommand.ExecuteReader();
                     while (dataReaderPosts.Read())
 	                {
-	                    posts.Add(new Post(Convert.ToInt32(dataReaderPosts["postID"].ToString()), dataReaderPosts["inhoud"].ToString()));
+                        posts.Add(new Post(Convert.ToInt32(dataReaderPosts["postID"].ToString()), dataReaderPosts["inhoud"].ToString(), dataReaderPosts["USERNAME"].ToString()));
 	                }
 
                     ForumCategory category = MainAdministration.Categorys.Find(x => x.ID == Convert.ToInt32(dataReaderThread["FORUMCATEGORIEID"].ToString()));
@@ -153,7 +153,7 @@
                     dataReaderPosts = threadCommand.ExecuteReader();
                     while (dataReaderPosts.Read())
                     {
-                        posts.Add(new Post(Convert.ToInt32(dataReaderPosts["postID"].ToString()), dataReaderPosts["inhoud"].ToString()));
+                        posts.Add(new Post(Convert.ToInt32(dataReaderPosts["postID"].ToString()), dataReaderPosts["inhoud"].ToString(), dataReaderPosts["USERNAME"].ToString()));
                     }
 
                     ForumCategory category = MainAdministration.Categorys.Find(x => x.ID == Convert.ToInt32(dataReaderThread["FORUMCATEGORIEID"].ToString()));
@@ -341,7 +341,7 @@
                     dataReaderPosts = threadCommand.ExecuteReader();
                     while (dataReaderPosts.Read())
                     {
-                        posts.Add(new Post(Convert.ToInt32(dataReaderPosts["postID"].ToString()), dataReaderPosts["inhoud"].ToString()));
+                        posts.Add(new Post(Convert.ToInt32(dataReaderPosts["postID"].ToString()), dataReaderPosts["inhoud"].ToString(), dataReaderPosts["USERNAME"].ToString()));
                     }
 
                     ForumCategory category = MainAdministration.Categorys.Find(x => x.ID == Convert.ToInt32(dataReaderThread["FORUMCATEGORIEID"].ToString()));

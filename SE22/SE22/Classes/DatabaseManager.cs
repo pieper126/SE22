@@ -201,6 +201,35 @@
             }
         }
 
+        public static void CreateNewPost(int threadID, string content, string username)
+        {
+            OracleConnection conn = MakeConnection();
+            conn.Open();
+
+            int postID = GetHighestID("POST");
+
+            string mainQuery = "INSERT INTO POST VALUES (:POSTID, :THREADID, :CONTENT, :USERNAME)";
+
+            OracleCommand command = new OracleCommand(mainQuery, conn);
+            command.Parameters.Add(new OracleParameter("POSTID", postID));
+            command.Parameters.Add(new OracleParameter("THREADID", threadID));
+            command.Parameters.Add(new OracleParameter("CONTENT", content));
+            command.Parameters.Add(new OracleParameter("USERNAME", username));
+
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         /// <summary>
         /// deletes the given thread
         /// </summary>
@@ -368,6 +397,37 @@
         private static OracleConnection MakeConnection()
         {
             return new OracleConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+        }
+
+        private static int GetHighestID(string type)
+        {
+            int returnValue = int.MinValue;
+
+            OracleConnection conn = MakeConnection();
+            conn.Open();
+
+            string query = "SELECT MAX(" + type + "ID) FROM" + type;
+            OracleCommand command = new OracleCommand(query, conn);
+            OracleDataReader dataReader;
+
+            try
+            {
+                dataReader = command.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    returnValue = Convert.ToInt32(dataReader[0]);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return returnValue;
         }
     }
 }

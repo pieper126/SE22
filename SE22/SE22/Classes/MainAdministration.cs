@@ -30,9 +30,9 @@ namespace SE22
 
         }
 
-        public static void CreateNewThread(User user, string content, int id)
+        public static void CreateNewThread(User user, string content, ForumCategory category, string threadName)
         {
-
+            DatabaseManager.CreateNewThread(user.Username, category.ID, content, threadName);
         }
 
         public static void CreateNewPost(User user, string content, ForumThread thread)

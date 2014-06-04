@@ -206,7 +206,7 @@
             OracleConnection conn = MakeConnection();
             conn.Open();
 
-            int postID = GetHighestID("POST");
+            int postID = GetNewID("POST");
 
             string mainQuery = "INSERT INTO POST VALUES (:POSTID, :THREADID, :CONTENT, :USERNAME)";
 
@@ -218,6 +218,45 @@
 
             try
             {
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public static void CreateNewThread(string username, int categoryID, string content, string threadName)
+        {
+            OracleConnection conn = MakeConnection();
+            conn.Open();
+
+            int threadID = GetNewID("THREAD");
+            int postID = GetNewID("POST");
+
+            string ThreadQuery = "INSERT INTO THREAD VALUES (:THREADID, :USERNAME, :CATEGORYID, :SUMMARY, :THREADNAME)";
+            string PostQuery = "INSERT INTO POST VALUES (:POSTID, :THREADID, :CONTENT, :USERNAME)";
+
+            OracleCommand commandThread = new OracleCommand(ThreadQuery, conn);
+            commandThread.Parameters.Add(new OracleParameter("THREADID", threadID));
+            commandThread.Parameters.Add(new OracleParameter("USERNAME", username));
+            commandThread.Parameters.Add(new OracleParameter("CATEGORYID", categoryID));
+            commandThread.Parameters.Add(new OracleParameter("SUMMARY", null));
+            commandThread.Parameters.Add(new OracleParameter("THREADNAME", threadName));
+
+            OracleCommand command = new OracleCommand(PostQuery, conn);
+            command.Parameters.Add(new OracleParameter("POSTID", postID));
+            command.Parameters.Add(new OracleParameter("THREADID", threadID));
+            command.Parameters.Add(new OracleParameter("CONTENT", content));
+            command.Parameters.Add(new OracleParameter("USERNAME", username));
+
+            try
+            {
+                commandThread.ExecuteNonQuery();
                 command.ExecuteNonQuery();
             }
             catch (Exception)
@@ -399,7 +438,12 @@
             return new OracleConnection(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         }
 
-        private static int GetHighestID(string type)
+        /// <summary>
+        /// this method should be used to get a ID to create a new record of the given type
+        /// </summary>
+        /// <param name="type">the type of ID u want to return</param>
+        /// <returns>Higshest ID of a given type</returns>
+        private static int GetNewID(string type)
         {
             int returnValue = int.MinValue;
 

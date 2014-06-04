@@ -35,6 +35,11 @@ namespace SE22
 
         }
 
+        public static void CreateNewPost(User user, string content, ForumThread thread)
+        {
+            DatabaseManager.CreateNewPost(thread.ID, content, user.Username);
+        }
+
         public static void DeletePost(int id)
         {
 

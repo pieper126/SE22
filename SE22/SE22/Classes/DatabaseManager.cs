@@ -406,7 +406,7 @@
             OracleConnection conn = MakeConnection();
             conn.Open();
 
-            string query = "SELECT MAX(" + type + "ID) FROM" + type;
+            string query = "SELECT MAX(" + type + "ID) FROM " + type;
             OracleCommand command = new OracleCommand(query, conn);
             OracleDataReader dataReader;
 
@@ -416,7 +416,7 @@
 
                 while (dataReader.Read())
                 {
-                    returnValue = Convert.ToInt32(dataReader[0]);
+                    returnValue = Convert.ToInt32(dataReader[0]) + 1;
                 }
             }
             catch (Exception)

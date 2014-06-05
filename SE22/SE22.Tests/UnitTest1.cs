@@ -90,7 +90,25 @@ namespace SE22.Tests
                 Assert.Fail();
             }
 
+            TestDeletePost(postID, threadID);
+
             Assert.IsNotNull(PostUsedToAssert);
+        }
+
+        [TestMethod()]
+        public void TestDeletePost(int id, int threadID)
+        {
+            // Arrange
+            ForumThread before;
+            ForumThread after;
+
+            //act
+            SE22.Tests.MainAdministration.StartUp();
+            before = SE22.Tests.DatabaseManager.UpdateThread(threadID);
+            DatabaseManager.DeletePost(id);
+            after = SE22.Tests.DatabaseManager.UpdateThread(threadID);
+
+            Assert.AreNotSame(before.Posts.Count, after.Posts.Count);
         }
     }
 }

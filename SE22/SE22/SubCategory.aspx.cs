@@ -13,7 +13,7 @@ namespace SE22
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["PreviousPage"] != "Main")
+            if (Session["PreviousPage"] == null || Session["PreviousPage"].ToString() != "Category:")
             {
                 Page.Response.Redirect("Default");
                 return;
@@ -53,71 +53,31 @@ namespace SE22
 
         private void initialization()
         {
-            if (Categorys.Count > 3)
+            panel.Visible = true;
+            foreach (ForumCategory category in Categorys)
             {
-                HyperLink1.Text = Categorys[0].Name;
-                HyperLink2.Text = Categorys[1].Name;
-                HyperLink3.Text = Categorys[2].Name;
-                HyperLink4.Text = Categorys[3].Name;
-                LblTotalThreads1.Text = MainAdministration.NumberofThreadsPerCategory(Categorys[0]).ToString();
-                LblTotalThreads2.Text = MainAdministration.NumberofThreadsPerCategory(Categorys[1]).ToString();
-                LblTotalThreads3.Text = MainAdministration.NumberofThreadsPerCategory(Categorys[2]).ToString();
-                LblTotalThreads4.Text = MainAdministration.NumberofThreadsPerCategory(Categorys[3]).ToString();
-
-                HyperLink1.Visible = true;
-                HyperLink2.Visible = true;
-                HyperLink3.Visible = true;
-                HyperLink4.Visible = true;
-                LblTotalThreads1.Visible = true;
-                LblTotalThreads2.Visible = true;
-                LblTotalThreads3.Visible = true;
-                LblTotalThreads4.Visible = true;
-                CategoryButton1.Visible = true;
-                CategoryButton2.Visible = true;
-                CategoryButton3.Visible = true;
-                CategoryButton4.Visible = true;
+                PostThread control = (PostThread)LoadControl("PostThread.ascx");
+                control.UrlNextPage = "~/Category.aspx";
+                control.ObjectOfTHeControl = category;
+                control.TypeOfObject = "Category";
+                control.Visible = true;
+                control.SetHyperLink(category.Name);
+                control.EnableHyperlink();
+                control.SetLabel(MainAdministration.NumberofThreadsPerCategory(category).ToString());
+                control.EnableLabel();
+                control.EnableGo();
+                panel.Controls.Add(control);
             }
-            else if (Categorys.Count > 2)
-            {
-                HyperLink1.Text = Categorys[0].Name;
-                HyperLink2.Text = Categorys[1].Name;
-                HyperLink3.Text = Categorys[2].Name;
-                LblTotalThreads1.Text = MainAdministration.NumberofThreadsPerCategory(Categorys[0]).ToString();
-                LblTotalThreads2.Text = MainAdministration.NumberofThreadsPerCategory(Categorys[1]).ToString();
-                LblTotalThreads3.Text = MainAdministration.NumberofThreadsPerCategory(Categorys[2]).ToString();
 
-                HyperLink1.Visible = true;
-                HyperLink2.Visible = true;
-                HyperLink3.Visible = true;
-                LblTotalThreads1.Visible = true;
-                LblTotalThreads2.Visible = true;
-                LblTotalThreads3.Visible = true;
-                CategoryButton1.Visible = true;
-                CategoryButton2.Visible = true;
-                CategoryButton3.Visible = true;
-            }
-            else if (Categorys.Count > 1)
+            if (panel.Controls.Count < 10)
             {
-                HyperLink1.Text = Categorys[0].Name;
-                HyperLink2.Text = Categorys[1].Name;
-                LblTotalThreads1.Text = MainAdministration.NumberofThreadsPerCategory(Categorys[0]).ToString();
-                LblTotalThreads2.Text = MainAdministration.NumberofThreadsPerCategory(Categorys[1]).ToString();
+                int counter = (10 - panel.Controls.Count) / 2;
 
-                HyperLink1.Visible = true;
-                HyperLink2.Visible = true;
-                LblTotalThreads1.Visible = true;
-                LblTotalThreads2.Visible = true;
-                CategoryButton1.Visible = true;
-                CategoryButton2.Visible = true;
-            }
-            else if (Categorys.Count > 0)
-            {
-                HyperLink1.Text = Categorys[0].Name;
-                LblTotalThreads1.Text = MainAdministration.NumberofThreadsPerCategory(Categorys[0]).ToString();
-
-                HyperLink1.Visible = true;
-                LblTotalThreads1.Visible = true;
-                CategoryButton1.Visible = true;
+                for (int i = 0; i < counter; i++)
+                {
+                    PostThread control = (PostThread)LoadControl("PostThread.ascx");
+                    panel.Controls.Add(control);
+                }
             }
         }
     }

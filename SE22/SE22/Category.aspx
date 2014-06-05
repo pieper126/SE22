@@ -43,6 +43,11 @@
         <asp:CustomValidator ID="ThreadValidator4" runat="server" ErrorMessage="CustomValidator" CssClass="text-danger"></asp:CustomValidator>
     </div>
 
+    <div class ="well">
+        <asp:Button ID="BtnPrev" Text="Prev" runat="server" OnClick="BtnPrev_Click" CausesValidation="False"/>
+        <asp:Button ID="BtnNext" Text="Next" runat="server" OnClick="BtnNext_Click" CausesValidation="False"/>
+    </div>
+
     <div>
         <div>
             <h2><asp:Label ID="LblType" runat="server" Text="New Thread" Style="margin-top: 10px;"></asp:Label></h2>

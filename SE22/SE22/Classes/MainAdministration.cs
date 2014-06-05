@@ -13,10 +13,13 @@ namespace SE22
         }
 
         /// <summary>
-        /// 
+        /// All categorys
         /// </summary>
         public static List<ForumCategory> Categorys { get; private set; }
 
+        /// <summary>
+        /// All threads
+        /// </summary>
         public static List<ForumThread> Threads { get; private set; }
 
         /// <summary>

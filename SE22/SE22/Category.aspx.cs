@@ -14,6 +14,8 @@ namespace SE22
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            PostThread postthread = new PostThread();
+            postthread.Visible = true;
             currentThreads = MainAdministration.GiveAllThreadsOfAGivenCategory(((ForumCategory)Session["NextPage"]).ID);
             Initialization();
         }

@@ -17,28 +17,28 @@ namespace SE22
 
         protected void CategoryButton1_Click(object sender, EventArgs e)
         {
-            Session["NextPage"] = MainAdministration.Categorys[0].ID;
+            Session["NextPage"] = MainAdministration.Categorys[0];
             Session["PreviousPage"] = "Main";
             Page.Response.Redirect("Category");
         }
 
         protected void CategoryButton2_Click(object sender, EventArgs e)
         {
-            Session["NextPage"] = MainAdministration.Categorys[1].ID;
+            Session["NextPage"] = MainAdministration.Categorys[1];
             Session["PreviousPage"] = "Main";
             Page.Response.Redirect("Category");
         }
 
         protected void CategoryButton3_Click(object sender, EventArgs e)
         {
-            Session["NextPage"] = MainAdministration.Categorys[2].ID;
+            Session["NextPage"] = MainAdministration.Categorys[2];
             Session["PreviousPage"] = "Main";
             Page.Response.Redirect("Category");
         }
 
         protected void CategoryButton4_Click(object sender, EventArgs e)
         {
-            Session["NextPage"] = MainAdministration.Categorys[3].ID;
+            Session["NextPage"] = MainAdministration.Categorys[3];
             Session["PreviousPage"] = "Main";
             Page.Response.Redirect("Category");
         }

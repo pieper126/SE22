@@ -69,7 +69,7 @@ namespace SE22
             {
                 DatabaseManager.DeleteThread(((ForumThread)o).ID);
             }
-            else if (o is ForumCategory)
+            else if (o is Post)
             {
                 DatabaseManager.DeletePost(((Post)o).ID);
             }

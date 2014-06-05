@@ -23,34 +23,6 @@ namespace SE22
             initialization();
         }
 
-        protected void CategoryButton1_Click(object sender, EventArgs e)
-        {
-            Session["NextPage"] = Categorys[0];
-            Session["PreviousPage"] = "SubCategory";
-            Page.Response.Redirect("Category");
-        }
-
-        protected void CategoryButton2_Click(object sender, EventArgs e)
-        {
-            Session["NextPage"] = Categorys[1];
-            Session["PreviousPage"] = "SubCategory";
-            Page.Response.Redirect("Category");
-        }
-
-        protected void CategoryButton3_Click(object sender, EventArgs e)
-        {
-            Session["NextPage"] = Categorys[2];
-            Session["PreviousPage"] = "SubCategory";
-            Page.Response.Redirect("Category");
-        }
-
-        protected void CategoryButton4_Click(object sender, EventArgs e)
-        {
-            Session["NextPage"] = Categorys[3];
-            Session["PreviousPage"] = "SubCategory";
-            Page.Response.Redirect("Category");
-        }
-
         private void initialization()
         {
             panel.Visible = true;
@@ -69,9 +41,9 @@ namespace SE22
                 panel.Controls.Add(control);
             }
 
-            if (panel.Controls.Count < 10)
+            if (panel.Controls.Count < 5)
             {
-                int counter = (10 - panel.Controls.Count) / 2;
+                int counter = 5 - panel.Controls.Count;
 
                 for (int i = 0; i < counter; i++)
                 {

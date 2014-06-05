@@ -7,41 +7,8 @@
         <asp:Label ID="LblTotalPosts0" runat="server" Text="Total Post:" CssClass="right"></asp:Label>
     </div>    
 
-    <div class ="well">        
-        <asp:HyperLink ID="HyperLink1" runat="server" Visible="False">Not Found</asp:HyperLink>
-        <asp:Label ID="LblTotalPosts1" runat="server" Text="-" Visible="False"></asp:Label>  
-        <asp:Button Text="go" runat="server" ID="ThreadButton1" OnClick="ThreadButton1_Click" Visible="False" CausesValidation="False" />              
-        <asp:Button Text="Alter" runat="server" ID="AlterButton1" OnClick="AlterButton1_Click" Visible="False" Width="44px" CausesValidation="False"/>      
-        <asp:Button Text="delete" runat="server" ID="DeleteButton1" OnClick="DeleteButton1_Click" Visible="False"  CausesValidation="False"/>      
-        <asp:CustomValidator ID="ThreadValidator1" runat="server" ErrorMessage="CustomValidator" CssClass="text-danger"></asp:CustomValidator>
-    </div>
-
-    <div class ="well">        
-        <asp:HyperLink ID="HyperLink2" CssClass ="" runat="server" Visible="False" >Not Found</asp:HyperLink>
-        <asp:Label ID="LblTotalPosts2" runat="server" Text="-" Visible="False"></asp:Label>  
-        <asp:Button Text="go" runat="server" ID="ThreadButton2" Visible="False" OnClick="ThreadButton2_Click" CausesValidation="False"/>       
-        <asp:Button Text="Alter" runat="server" ID="AlterButton2" OnClick="AlterButton2_Click" Visible="False" CausesValidation="False"/>       
-        <asp:Button Text="delete" runat="server" ID="DeleteButton2" OnClick="DeleteButton2_Click" Visible="False" CausesValidation="False"/>      
-        <asp:CustomValidator ID="ThreadValidator2" runat="server" ErrorMessage="CustomValidator" CssClass="text-danger"></asp:CustomValidator>
-    </div>
-
-    <div class ="well">        
-        <asp:HyperLink ID="HyperLink3" CssClass ="" runat="server" Visible="False">Not Found</asp:HyperLink>
-        <asp:Label ID="LblTotalPosts3" runat="server" Text="-" Visible="False"></asp:Label>
-        <asp:Button Text="go" runat="server" ID="ThreadButton3" Visible="False" OnClick="ThreadButton3_Click" CausesValidation="False"/>         
-        <asp:Button Text="Alter" runat="server" ID="AlterButton3" OnClick="AlterButton3_Click" Visible="False" CausesValidation="False"/>         
-        <asp:Button Text="delete" runat="server" ID="DeleteButton3" OnClick="DeleteButton3_Click" Visible="False" CausesValidation="False"/>      
-        <asp:CustomValidator ID="ThreadValidator3" runat="server" ErrorMessage="CustomValidator" CssClass="text-danger"></asp:CustomValidator>
-    </div>
-
-    <div class ="well">        
-        <asp:HyperLink ID="HyperLink4" CssClass ="" runat="server" Visible="False">Not Found</asp:HyperLink>
-        <asp:Label ID="LblTotalPosts4" runat="server" Text="-" Visible="False"></asp:Label>  
-        <asp:Button Text="go" runat="server" ID="ThreadButton4" Visible="False" Width="30px" OnClick="ThreadButton4_Click" CausesValidation="False"/>                
-        <asp:Button Text="Alter" runat="server" ID="AlterButton4" OnClick="AlterButton4_Click" Visible="False" CausesValidation="False"/>                
-        <asp:Button Text="delete" runat="server" ID="DeleteButton4" OnClick="DeleteButton4_Click" Visible="False" CausesValidation="False"/>      
-        <asp:CustomValidator ID="ThreadValidator4" runat="server" ErrorMessage="CustomValidator" CssClass="text-danger"></asp:CustomValidator>
-    </div>
+    <asp:Panel runat="server" ID="panel">
+    </asp:Panel>        
 
     <div class ="well">
         <asp:Button ID="BtnPrev" Text="Prev" runat="server" OnClick="BtnPrev_Click" CausesValidation="False"/>

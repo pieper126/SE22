@@ -36,9 +36,9 @@ namespace SE22
                 panel.Controls.Add(control);
             }
 
-            if (panel.Controls.Count < 10)
+            if (panel.Controls.Count < 5)
             {
-                int counter = (10 - panel.Controls.Count)/2;
+                int counter = 5 - panel.Controls.Count;
 
                 for (int i = 0; i < counter; i++)
                 {

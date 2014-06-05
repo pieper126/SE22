@@ -200,6 +200,7 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="Style.css" />
+    <Content Include="SubCategory.aspx" />
     <Content Include="Thread.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -313,6 +314,13 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="SubCategory.aspx.cs">
+      <DependentUpon>SubCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubCategory.aspx.designer.cs">
+      <DependentUpon>SubCategory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Thread.aspx.cs">
       <DependentUpon>Thread.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

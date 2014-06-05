@@ -12,10 +12,43 @@ namespace SE22
 
         List<ForumThread> currentThreads = new List<ForumThread>();
 
+        private int counter;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            counter = (int)Session["POSTCOUNTER"];
             currentThreads = MainAdministration.GiveAllThreadsOfAGivenCategory(((ForumCategory)Session["NextPage"]).ID);
             Initialization();
+        }
+
+        protected void BtnPrev_Click(object sender, EventArgs e)
+        {
+            counter -= 5;
+            Session["POSTCOUNTER"] = counter;
+
+            if (counter == 0)
+            {
+                counter += 5;
+                Session["POSTCOUNTER"] = counter;
+                BtnNext.Enabled = false;
+                return;
+            }
+            Response.Redirect(Request.RawUrl);
+        }
+
+        protected void BtnNext_Click(object sender, EventArgs e)
+        {
+            counter += 5;
+            Session["POSTCOUNTER"] = counter;
+
+            if (counter >= currentThreads.Count)
+            {
+                BtnNext.Enabled = false;
+                counter -= 5;
+                Session["POSTCOUNTER"] = counter;
+                return;
+            }
+            Response.Redirect(Request.RawUrl);
         }
 
         protected void ThreadButton1_Click(object sender, EventArgs e)

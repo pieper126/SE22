@@ -43,17 +43,6 @@ namespace SE22
                 return;
             }
             Response.Redirect(Request.RawUrl);
-            //if(postCounter > 10)
-            //{
-            //    postCounter -= 5;
-            //    Pageinitialization(postCounter);
-            //}
-            //else if (postCounter == 5)
-            //{
-            //    postCounter -= 5;
-            //    Pageinitialization(postCounter);
-            //    BtnPrev.Enabled = false;
-            //}
         }
 
         protected void BtnNext_Click(object sender, EventArgs e)

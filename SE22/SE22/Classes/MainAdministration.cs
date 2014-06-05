@@ -42,7 +42,7 @@ namespace SE22
 
         public static void DeletePost(int id)
         {
-
+            DatabaseManager.DeletePost(id);
         }
 
         public static void DeletePost(Post post)
@@ -52,12 +52,28 @@ namespace SE22
 
         public static void DeleteThread(int id)
         {
-
+            DatabaseManager.DeleteThread(id);
         }
 
-        public static void DeleteThread(Thread thread)
+        public static void DeleteThread(ForumThread thread)
         {
+            DatabaseManager.DeleteThread(thread.ID);
+        }
 
+        public static void DeleteObject(object o)
+        {
+            if (o is ForumThread)
+            {
+                DatabaseManager.DeleteThread(((ForumThread)o).ID);
+            }
+            else if (o is ForumCategory)
+            {
+                DatabaseManager.DeletePost(((Post)o).ID);
+            }
+            else
+            {
+                throw new InvalidCastException();
+            }
         }
 
         public static void StartUp()

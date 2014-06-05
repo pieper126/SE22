@@ -107,7 +107,7 @@
 
                     ForumCategory category = MainAdministration.Categorys.Find(x => x.ID == Convert.ToInt32(dataReaderThread["FORUMCATEGORIEID"].ToString()));
 
-                    threads.Add(new ForumThread(Convert.ToInt32(dataReaderThread["threadID"].ToString()), posts, category, dataReaderThread["THREADNAME"].ToString()));
+                    threads.Add(new ForumThread(Convert.ToInt32(dataReaderThread["threadID"].ToString()), posts, category, dataReaderThread["THREADNAME"].ToString(), dataReaderThread["USERNAME"].ToString()));
                 }
             }
             catch (Exception)
@@ -158,7 +158,7 @@
 
                     ForumCategory category = MainAdministration.Categorys.Find(x => x.ID == Convert.ToInt32(dataReaderThread["FORUMCATEGORIEID"].ToString()));
 
-                    thread = new ForumThread(Convert.ToInt32(dataReaderThread["threadID"].ToString()), posts, category, dataReaderThread["THREADNAME"].ToString());
+                    thread = new ForumThread(Convert.ToInt32(dataReaderThread["threadID"].ToString()), posts, category, dataReaderThread["THREADNAME"].ToString(), dataReaderThread["USERNAME"].ToString());
                 }
             }
             catch (Exception)
@@ -281,7 +281,7 @@
             string mainQuery = "DELETE FROM THREAD WHERE THREADID = :THREADID";
 
             OracleCommand command = new OracleCommand(mainQuery, conn);
-            command.Parameters.Add(new OracleParameter("POSTID", id));
+            command.Parameters.Add(new OracleParameter("THREADID", id));
 
             try
             {
@@ -414,7 +414,7 @@
 
                     ForumCategory category = MainAdministration.Categorys.Find(x => x.ID == Convert.ToInt32(dataReaderThread["FORUMCATEGORIEID"].ToString()));
 
-                    threads.Add(new ForumThread(Convert.ToInt32(dataReaderThread["threadID"].ToString()), posts, category, dataReaderThread["THREADNAME"].ToString()));
+                    threads.Add(new ForumThread(Convert.ToInt32(dataReaderThread["threadID"].ToString()), posts, category, dataReaderThread["THREADNAME"].ToString(), dataReaderThread["USERNAME"].ToString()));
                 }
             }
             catch (Exception)

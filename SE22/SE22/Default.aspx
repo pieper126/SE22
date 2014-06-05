@@ -3,20 +3,31 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">  
     <link href="Style.css" rel="stylesheet" type="text/css" />  
     <div class = "well">
-        <asp:Label ID="LblCategoryName" runat="server" Text="Category name:"></asp:Label>
-        <asp:Label ID="LblTotalPosts" runat="server" Text="Total posts:"></asp:Label>
-        <asp:Label ID="LblTotalThreads" runat="server" Text="Total Threads:" CssClass="right"></asp:Label>
+        <asp:Label ID="LblCategoryName0" runat="server" Text="Category name:"></asp:Label>
+        <asp:Label ID="LblTotalThreads0" runat="server" Text="Total Threads:" CssClass="right"></asp:Label>
     </div>    
 
     <div class ="well">        
-        <asp:HyperLink ID="HyperLink0" runat="server">HyperLink</asp:HyperLink>
-        <asp:Label ID="LblTotalPosts0" runat="server" Text="1000"></asp:Label>
-        <asp:Label ID="LblTotalThreads0" runat="server" Text="1000"></asp:Label>        
+        <asp:HyperLink ID="HyperLink1" runat="server" Visible="False">Not Found</asp:HyperLink>
+        <asp:Label ID="LblTotalThreads1" runat="server" Text="-" Visible="False"></asp:Label>  
+        <asp:Button Text="go" runat="server" ID="CategoryButton1" OnClick="CategoryButton1_Click" Visible="False"/>      
     </div>
 
     <div class ="well">        
-        <asp:HyperLink ID="HyperLink1" CssClass ="" runat="server">HyperLink</asp:HyperLink>
-        <asp:Label ID="LblTotalPosts1" runat="server" Text="1000"></asp:Label>
-        <asp:Label ID="LblTotalThreads1" runat="server" Text="1000"></asp:Label>        
+        <asp:HyperLink ID="HyperLink2" CssClass ="" runat="server" Visible="False">Not Found</asp:HyperLink>
+        <asp:Label ID="LblTotalThreads2" runat="server" Text="-" Visible="False"></asp:Label>  
+        <asp:Button Text="go" runat="server" ID="CategoryButton2" Visible="False"/>       
+    </div>
+
+    <div class ="well">        
+        <asp:HyperLink ID="HyperLink3" CssClass ="" runat="server" Visible="False">Not Found</asp:HyperLink>
+        <asp:Label ID="LblTotalThreads3" runat="server" Text="-" Visible="False"></asp:Label>
+        <asp:Button Text="go" runat="server" ID="CategoryButton3" Visible="False"/>         
+    </div>
+
+    <div class ="well">        
+        <asp:HyperLink ID="HyperLink4" CssClass ="" runat="server" Visible="False">Not Found</asp:HyperLink>
+        <asp:Label ID="LblTotalThreads4" runat="server" Text="-" Visible="False"></asp:Label>  
+        <asp:Button Text="go" runat="server" ID="CategoryButton4" Visible="False" />                
     </div>
  </asp:Content>

@@ -7,12 +7,13 @@ namespace SE22
 {
     public class ForumThread
     {
-        public ForumThread(int id, List<Post> posts, ForumCategory category, string name)
+        public ForumThread(int id, List<Post> posts, ForumCategory category, string name, string username)
         {
             this.ID = id;
             this.Posts = posts;
             this.Category = category;
             this.Name = name;
+            this.Username = username;
         }
 
         public List<Post> Posts { get; private set; }

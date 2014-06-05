@@ -58,6 +58,33 @@ namespace SE22 {
         protected global::System.Web.UI.WebControls.Button ThreadButton1;
         
         /// <summary>
+        /// AlterButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button AlterButton1;
+        
+        /// <summary>
+        /// DeleteButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DeleteButton1;
+        
+        /// <summary>
+        /// ThreadValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator ThreadValidator1;
+        
+        /// <summary>
         /// HyperLink2 control.
         /// </summary>
         /// <remarks>
@@ -83,6 +110,33 @@ namespace SE22 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ThreadButton2;
+        
+        /// <summary>
+        /// AlterButton2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button AlterButton2;
+        
+        /// <summary>
+        /// DeleteButton2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DeleteButton2;
+        
+        /// <summary>
+        /// ThreadValidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator ThreadValidator2;
         
         /// <summary>
         /// HyperLink3 control.
@@ -112,6 +166,33 @@ namespace SE22 {
         protected global::System.Web.UI.WebControls.Button ThreadButton3;
         
         /// <summary>
+        /// AlterButton3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button AlterButton3;
+        
+        /// <summary>
+        /// DeleteButton3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DeleteButton3;
+        
+        /// <summary>
+        /// ThreadValidator3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator ThreadValidator3;
+        
+        /// <summary>
         /// HyperLink4 control.
         /// </summary>
         /// <remarks>
@@ -137,6 +218,33 @@ namespace SE22 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ThreadButton4;
+        
+        /// <summary>
+        /// AlterButton4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button AlterButton4;
+        
+        /// <summary>
+        /// DeleteButton4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DeleteButton4;
+        
+        /// <summary>
+        /// ThreadValidator4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator ThreadValidator4;
         
         /// <summary>
         /// LblType control.
@@ -166,6 +274,15 @@ namespace SE22 {
         protected global::System.Web.UI.WebControls.TextBox TbName;
         
         /// <summary>
+        /// NameValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator NameValidator;
+        
+        /// <summary>
         /// Label3 control.
         /// </summary>
         /// <remarks>
@@ -175,13 +292,22 @@ namespace SE22 {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// Tb control.
+        /// TbContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Tb;
+        protected global::System.Web.UI.WebControls.TextBox TbContent;
+        
+        /// <summary>
+        /// ContentValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ContentValidator;
         
         /// <summary>
         /// NewThreadbutton control.
@@ -191,5 +317,14 @@ namespace SE22 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button NewThreadbutton;
+        
+        /// <summary>
+        /// LoggedInUserValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator LoggedInUserValidator;
     }
 }

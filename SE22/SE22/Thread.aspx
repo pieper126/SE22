@@ -8,8 +8,9 @@
         </div>
          <div>
             <asp:Label ID="PostedBy0" runat="server" Text="Label" Style="margin-top: 10px;" Visible="False"></asp:Label>
-             <asp:Button ID="BtnAlter0" Text="Alter" runat="server" />
-             <asp:Button ID="BtnDelete0" Text="Delete" runat="server" />
+             <asp:Button ID="BtnAlter0" Text="Alter" runat="server" OnClick="BtnAlter0_Click" CausesValidation="False"/>
+             <asp:Button ID="BtnDelete0" Text="Delete" runat="server" OnClick="BtnDelete0_Click" CausesValidation="False"/>
+             <asp:CustomValidator ID="ThreadValidator1" CssClass="text-danger" runat="server" ErrorMessage="CustomValidator"></asp:CustomValidator>
         </div>
     </div>
 
@@ -19,8 +20,9 @@
         </div>
          <div>
             <asp:Label ID="PostedBy1" runat="server" Text="Label" Style="margin-top: 10px;" Visible="False"></asp:Label>
-             <asp:Button ID="BtnAlter1" Text="Alter" runat="server" />
-             <asp:Button ID="BtnDelete1" Text="Delete" runat="server" />
+             <asp:Button ID="BtnAlter1" Text="Alter" runat="server" OnClick="BtnAlter1_Click" CausesValidation="False"/>
+             <asp:Button ID="BtnDelete1" Text="Delete" runat="server" OnClick="BtnDelete1_Click" style="height: 26px" CausesValidation="False"/>
+             <asp:CustomValidator ID="ThreadValidator2" CssClass="text-danger" runat="server" ErrorMessage="CustomValidator"></asp:CustomValidator>
         </div>
     </div>
 
@@ -30,8 +32,9 @@
         </div>
          <div>
             <asp:Label ID="PostedBy2" runat="server" Text="Label" Style="margin-top: 10px;" Visible="False"></asp:Label>
-             <asp:Button ID="BtnAlter2" Text="Alter" runat="server" />
-            <asp:Button ID="BtnDelete2" Text="Delete" runat="server" />
+             <asp:Button ID="BtnAlter2" Text="Alter" runat="server" OnClick="BtnAlter2_Click" CausesValidation="False"/>
+            <asp:Button ID="BtnDelete2" Text="Delete" runat="server" OnClick="BtnDelete2_Click" CausesValidation="False"/>
+             <asp:CustomValidator ID="ThreadValidator3" CssClass="text-danger" runat="server" ErrorMessage="CustomValidator"></asp:CustomValidator>
         </div>
     </div>
 
@@ -41,8 +44,9 @@
         </div>
          <div>
             <asp:Label ID="PostedBy3" runat="server" Text="Label" Style="margin-top: 10px;" Visible="False"></asp:Label>
-             <asp:Button ID="BtnAlter3" Text="Alter" runat="server" />
-            <asp:Button ID="BtnDelete3" Text="Delete" runat="server" />
+             <asp:Button ID="BtnAlter3" Text="Alter" runat="server" OnClick="BtnAlter3_Click" CausesValidation="False"/>
+            <asp:Button ID="BtnDelete3" Text="Delete" runat="server" OnClick="BtnDelete3_Click" CausesValidation="False"/>
+             <asp:CustomValidator ID="ThreadValidator4" CssClass="text-danger" runat="server" ErrorMessage="CustomValidator"></asp:CustomValidator>
         </div>
     </div>
 
@@ -52,14 +56,15 @@
         </div>
          <div>
             <asp:Label ID="PostedBy4" runat="server" Text="Label" Style="margin-top: 10px;" Visible="False"></asp:Label>
-             <asp:Button ID="BtnAlter4" Text="Alter" runat="server" />
-            <asp:Button ID="BtnDelete4" Text="Delete" runat="server" />
+             <asp:Button ID="BtnAlter4" Text="Alter" runat="server" OnClick="BtnAlter4_Click" />
+            <asp:Button ID="BtnDelete4" Text="Delete" runat="server" OnClick="BtnDelete4_Click" />
+             <asp:CustomValidator ID="ThreadValidator5" CssClass="text-danger" runat="server" ErrorMessage="CustomValidator"></asp:CustomValidator>
         </div>
     </div>
 
     <div class ="well">
-        <asp:Button ID="BtnPrev" Text="Prev" runat="server" OnClick="BtnPrev_Click"/>
-        <asp:Button ID="BtnNext" Text="Next" runat="server" OnClick="BtnNext_Click"/>
+        <asp:Button ID="BtnPrev" Text="Prev" runat="server" OnClick="BtnPrev_Click" CausesValidation="False"/>
+        <asp:Button ID="BtnNext" Text="Next" runat="server" OnClick="BtnNext_Click" CausesValidation="False"/>
     </div>
 
     <div class ="well">

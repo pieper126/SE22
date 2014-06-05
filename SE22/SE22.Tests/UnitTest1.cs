@@ -66,13 +66,31 @@ namespace SE22.Tests
         public void NewIDTest()
         {
             // Arrange
-            MainAdministration.StartUp();
-            
+            ForumThread before;
+            ForumThread after;
+            Post PostUsedToAssert = null;
+            int threadID = 1;
+            string content = "test";
+            string username = "example2";
+            int postID = int.MinValue;
 
             //act
-            DatabaseManager.LogIn(username, password);
+            SE22.Tests.MainAdministration.StartUp();
+            before = SE22.Tests.DatabaseManager.UpdateThread(threadID);
+            postID = SE22.Tests.DatabaseManager.GetNewID("post");
+            SE22.Tests.DatabaseManager.CreateNewPost(threadID, content, username);
+            after = SE22.Tests.DatabaseManager.UpdateThread(threadID);
 
-            Assert.Fail();
+            if (before.Posts.Count < after.Posts.Count)
+            {
+                PostUsedToAssert = after.Posts.Find(x => x.ID == postID);
+            }
+            else
+            {
+                Assert.Fail();
+            }
+
+            Assert.IsNotNull(PostUsedToAssert);
         }
     }
 }

@@ -462,7 +462,7 @@ namespace SE22.Tests
         /// </summary>
         /// <param name="type">the type of ID u want to return</param>
         /// <returns>Highest ID of a given type</returns>
-        private static int GetNewID(string type)
+        public static int GetNewID(string type)
         {
             int returnValue = int.MinValue;
 

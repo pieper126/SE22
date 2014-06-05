@@ -82,6 +82,7 @@ namespace SE22
             Response.Redirect(Request.RawUrl);
         }
 
+        #region TextBox
         public void EnableTextBox()
         {
             PostTB.Enabled = true;
@@ -94,6 +95,13 @@ namespace SE22
             PostTB.Visible = false;
         }
 
+        public void SetTextBox(string text)
+        {
+            PostTB.Text = text;
+        } 
+        #endregion
+
+        #region GoButton
         public void EnableGo()
         {
             ThreadButton.Enabled = true;
@@ -104,8 +112,10 @@ namespace SE22
         {
             ThreadButton.Enabled = false;
             ThreadButton.Visible = false;
-        }
+        } 
+        #endregion
 
+        #region AlterButton
         public void EnableAlter()
         {
             AlterButton.Enabled = true;
@@ -116,6 +126,14 @@ namespace SE22
         {
             AlterButton.Enabled = false;
             AlterButton.Visible = false;
+        } 
+        #endregion
+
+        #region Hyperlink
+        public void DisableHyperlink()
+        {
+            HyperLink.Enabled = false;
+            HyperLink.Visible = false;
         }
 
         public void EnableHyperlink()
@@ -124,10 +142,29 @@ namespace SE22
             HyperLink.Visible = true;
         }
 
+        public void SetHyperLink(string text)
+        {
+            HyperLink.Text = text;
+        } 
+        #endregion
+
+        #region Label
         public void EnableLabel()
         {
             Lbl.Enabled = true;
             Lbl.Visible = true;
         }
+
+        public void DisableLabel()
+        {
+            Lbl.Enabled = false;
+            Lbl.Visible = false;
+        }
+
+        public void SetLabel(string text)
+        {
+            Lbl.Text = text;
+        }
+        #endregion
     }
 }

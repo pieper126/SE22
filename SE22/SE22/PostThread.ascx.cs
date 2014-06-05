@@ -129,6 +129,20 @@ namespace SE22
         } 
         #endregion
 
+        #region DeleteButton
+        public void EnableDelete()
+        {
+            DeleteButton.Enabled = true;
+            DeleteButton.Visible = true;
+        }
+
+        public void DisableDelete()
+        {
+            DeleteButton.Enabled = false;
+            DeleteButton.Visible = false;
+        } 
+        #endregion
+
         #region Hyperlink
         public void DisableHyperlink()
         {

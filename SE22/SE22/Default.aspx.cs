@@ -30,7 +30,7 @@ namespace SE22
                 control.Visible = true;
                 control.SetHyperLink(category.Name);
                 control.EnableHyperlink();
-                control.SetLabel(MainAdministration.NumberofThreadsPerCategory(TopCategorys[0]).ToString());
+                control.SetLabel(MainAdministration.NumberofThreadsPerCategory(category).ToString());
                 control.EnableLabel();
                 control.EnableGo();
                 panel.Controls.Add(control);

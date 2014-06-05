@@ -260,7 +260,7 @@
     <Compile Include="Category.aspx.designer.cs">
       <DependentUpon>Category.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Category.cs" />
+    <Compile Include="Classes\ForumCategory.cs" />
     <Compile Include="Classes\DatabaseManager.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

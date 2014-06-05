@@ -158,7 +158,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Logout.aspx" />
-    <Content Include="NewThread.aspx" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -282,13 +281,6 @@
     </Compile>
     <Compile Include="Classes\MainAdministration.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="NewThread.aspx.cs">
-      <DependentUpon>NewThread.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="NewThread.aspx.designer.cs">
-      <DependentUpon>NewThread.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Classes\Post.cs" />
     <Compile Include="PostThread.ascx.cs">
       <DependentUpon>PostThread.ascx</DependentUpon>

@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SE22
+namespace SE22V1
 {
 
 
-    public partial class NewPost
+    public partial class Homepage
     {
 
         /// <summary>

@@ -1,12 +1,18 @@
-﻿namespace SE22
+﻿//-----------------------------------------------------------------------
+// <copyright file="DatabaseManager.cs" company="SE22">
+//     Company copyright tag.
+// </copyright>
+//-----------------------------------------------------------------------
+
+namespace SE22
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
+    using System.Web.Configuration;
     using Oracle.DataAccess.Client;
     using Oracle.DataAccess.Types;
-    using System.Web.Configuration;
 
     /// <summary>
     /// manages all data in the database
@@ -44,15 +50,15 @@
             {
                 dataReader = redactorCommand.ExecuteReader();
                 if (dataReader.HasRows)
-	            {
-		            functions.Add(Rights.Editor);
-	            }
+                {
+                    functions.Add(Rights.Editor);
+                }
 
                 dataReader = moderatorCommand.ExecuteReader();
                 if (dataReader.HasRows)
-	            {
-		            functions.Add(Rights.Moderator);
-	            }
+                {
+                    functions.Add(Rights.Moderator);
+                }
 
                 dataReader = command.ExecuteReader();
                 while (dataReader.Read())
@@ -61,7 +67,7 @@
                 }
             }
             catch (Exception)
-            {                
+            {
                 throw;
             }
             finally
@@ -101,9 +107,9 @@
 
                     dataReaderPosts = threadCommand.ExecuteReader();
                     while (dataReaderPosts.Read())
-	                {
+                    {
                         posts.Add(new Post(Convert.ToInt32(dataReaderPosts["postID"].ToString()), dataReaderPosts["inhoud"].ToString(), dataReaderPosts["USERNAME"].ToString()));
-	                }
+                    }
 
                     ForumCategory category = MainAdministration.Categorys.Find(x => x.ID == Convert.ToInt32(dataReaderThread["FORUMCATEGORIEID"].ToString()));
 
@@ -201,6 +207,12 @@
             }
         }
 
+        /// <summary>
+        /// Creates a new post in the database
+        /// </summary>
+        /// <param name="threadID">thread this post is belongs to</param>
+        /// <param name="content">content of the post itself</param>
+        /// <param name="username">the username of the person that posted the post</param>
         public static void CreateNewPost(int threadID, string content, string username)
         {
             OracleConnection conn = MakeConnection();
@@ -230,6 +242,13 @@
             }
         }
 
+        /// <summary>
+        /// Creates a new thread in the database
+        /// </summary>
+        /// <param name="username">Username of the person that made the new thread</param>
+        /// <param name="categoryID">ID of the category the new thread belongs to</param>
+        /// <param name="content">The content of the first post of this thread</param>
+        /// <param name="threadName">name of the thread</param>
         public static void CreateNewThread(string username, int categoryID, string content, string threadName)
         {
             OracleConnection conn = MakeConnection();
@@ -238,17 +257,17 @@
             int threadID = GetNewID("THREAD");
             int postID = GetNewID("POST");
 
-            string ThreadQuery = "INSERT INTO THREAD VALUES (:THREADID, :USERNAME, :CATEGORYID, :SUMMARY, :THREADNAME)";
-            string PostQuery = "INSERT INTO POST VALUES (:POSTID, :THREADID, :CONTENT, :USERNAME)";
+            string threadQuery = "INSERT INTO THREAD VALUES (:THREADID, :USERNAME, :CATEGORYID, :SUMMARY, :THREADNAME)";
+            string postQuery = "INSERT INTO POST VALUES (:POSTID, :THREADID, :CONTENT, :USERNAME)";
 
-            OracleCommand commandThread = new OracleCommand(ThreadQuery, conn);
+            OracleCommand commandThread = new OracleCommand(threadQuery, conn);
             commandThread.Parameters.Add(new OracleParameter("THREADID", threadID));
             commandThread.Parameters.Add(new OracleParameter("USERNAME", username));
             commandThread.Parameters.Add(new OracleParameter("CATEGORYID", categoryID));
             commandThread.Parameters.Add(new OracleParameter("SUMMARY", null));
             commandThread.Parameters.Add(new OracleParameter("THREADNAME", threadName));
 
-            OracleCommand command = new OracleCommand(PostQuery, conn);
+            OracleCommand command = new OracleCommand(postQuery, conn);
             command.Parameters.Add(new OracleParameter("POSTID", postID));
             command.Parameters.Add(new OracleParameter("THREADID", threadID));
             command.Parameters.Add(new OracleParameter("CONTENT", content));
@@ -311,10 +330,10 @@
             string mainQuery = "UPDATE THREAD SET";
 
             for (int i = 0; i < changes.Count; i++)
-			{
-			    mainQuery += paramaterToChanged[i];
+            {
+                mainQuery += paramaterToChanged[i];
                 mainQuery += " = " + changes[i];
-			}
+            }
 
             mainQuery += "WHERE POSTID = :POSTID";
 
@@ -381,7 +400,7 @@
         /// <summary>
         /// gives back the most recent version of a category
         /// </summary>
-        /// <param name="ID">ID used to identify the Category</param>
+        /// <param name="id">ID used to identify the Category</param>
         /// <returns>Most recent version of category</returns>
         public static List<ForumThread> GiveAllThreadsOfAGivenCategory(int id)
         {
@@ -442,7 +461,7 @@
         /// this method should be used to get a ID to create a new record of the given type
         /// </summary>
         /// <param name="type">the type of ID u want to return</param>
-        /// <returns>Higshest ID of a given type</returns>
+        /// <returns>Highest ID of a given type</returns>
         private static int GetNewID(string type)
         {
             int returnValue = int.MinValue;
@@ -471,6 +490,7 @@
             {
                 conn.Close();
             }
+
             return returnValue;
         }
     }

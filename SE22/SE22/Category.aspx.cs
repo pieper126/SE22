@@ -35,12 +35,16 @@ namespace SE22
             counter -= 5;
             Session["COUNTER"] = counter;
 
-            if (counter == 0)
+            if (counter > 0)
             {
                 counter += 5;
                 Session["COUNTER"] = counter;
                 BtnNext.Enabled = false;
                 return;
+            }
+            else if (counter == 0)
+            {
+                BtnPrev.Enabled = false;
             }
             Response.Redirect(Request.RawUrl);
         }
@@ -55,12 +59,16 @@ namespace SE22
             counter += 5;
             Session["COUNTER"] = counter;
 
-            if (counter >= currentThreads.Count)
+            if (counter > currentThreads.Count)
             {
                 BtnNext.Enabled = false;
                 counter -= 5;
                 Session["COUNTER"] = counter;
                 return;
+            }
+            else if (counter == currentThreads.Count)
+            {
+                BtnNext.Enabled = false;
             }
             Response.Redirect(Request.RawUrl);
         }
@@ -78,12 +86,20 @@ namespace SE22
                 LoggedInUserValidator.IsValid = false;
                 return;
             }
+
+            if (currentThreads.Find(x => x.Name == TbName.Text) != null)
+            {
+                LoggedInUserValidator.Text = "Thread already exists!";
+                LoggedInUserValidator.IsValid = false;
+                return;
+            }
+
             MainAdministration.CreateNewThread((User)Session["user"], TbContent.Text, currentThreads[0].Category, TbName.Text);
             Response.Redirect(Request.RawUrl);
         }
 
         private void Initialization()
-        {           
+        {
             if (currentThreads.Count < 5)
             {
                 panel.Controls.Clear();
@@ -94,6 +110,7 @@ namespace SE22
                     control.UrlNextPage = "~/Thread.aspx";
                     control.ObjectOfTHeControl = thread;
                     control.TypeOfObject = "Thread";
+                    control.Username = thread.Username;
                     control.Visible = true;
                     control.SetHyperLink(thread.Name);
                     control.EnableHyperlink();
@@ -133,6 +150,7 @@ namespace SE22
                     PostThread control = (PostThread)LoadControl("PostThread.ascx");
                     control.UrlNextPage = "~/Thread.aspx";
                     control.ObjectOfTHeControl = thread;
+                    control.Username = thread.Username;
                     control.TypeOfObject = "Thread";
                     control.Visible = true;
                     control.SetHyperLink(thread.Name);

@@ -38,12 +38,16 @@ namespace SE22
             postCounter -= 5;
             Session["COUNTER"] = postCounter;
 
-            if (postCounter == 0)
+            if (postCounter > 0)
             {
                 postCounter += 5;
                 Session["COUNTER"] = postCounter;
                 BtnNext.Enabled = false;
                 return;
+            }
+            else if (postCounter == 0)
+            {
+                BtnPrev.Enabled = false;
             }
             Response.Redirect(Request.RawUrl);
         }
@@ -58,12 +62,16 @@ namespace SE22
             postCounter += 5;
             Session["COUNTER"] = postCounter;
 
-            if (postCounter >= currentThread.Posts.Count)
+            if (postCounter > currentThread.Posts.Count)
             {
                 BtnNext.Enabled = false;
                 postCounter -= 5;
                 Session["COUNTER"] = postCounter;
                 return;
+            }
+            else if (postCounter == currentThread.Posts.Count)
+            {
+                BtnNext.Enabled = false;
             }
             Response.Redirect(Request.RawUrl);
         }
@@ -103,6 +111,7 @@ namespace SE22
                     control.EnableLabel();
                     control.EnableTextBox();
                     control.EnableDelete();
+                    control.Username = post.Username;
                     panel.Controls.Add(control);
                 }
 
@@ -141,6 +150,7 @@ namespace SE22
                     control.SetLabel(post.Username);
                     control.EnableLabel();
                     control.EnableTextBox();
+                    control.Username = post.Username;
                     control.EnableDelete();
                     panel.Controls.Add(control);
                 }

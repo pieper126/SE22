@@ -63,7 +63,7 @@ namespace SE22
 
             if (Username != ((User)Session["user"]).Username && !((User)Session["user"]).Functions.Contains(Rights.Moderator))
             {
-                ThreadValidator1.Text = "You don't own sufficient rights to delete this file";
+                ThreadValidator1.Text = "You don't own sufficient rights to delete this object";
                 ThreadValidator1.IsValid = false;
                 return;
             }

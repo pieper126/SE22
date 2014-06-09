@@ -101,6 +101,7 @@ namespace SE22
         /// It must either be a <see cref="Thread"/> or a <see cref="Post"/>
         /// </summary>
         /// <param name="o">object that needs to be deleted</param>
+        /// <exception cref="InvalidCastException">Gets thrown when the object Isn't supported</exception>
         public static void DeleteObject(object o)
         {
             if (o is ForumThread)
@@ -110,6 +111,36 @@ namespace SE22
             else if (o is Post)
             {
                 DatabaseManager.DeletePost(((Post)o).ID);
+            }
+            else
+            {
+                throw new InvalidCastException();
+            }
+        }
+
+        /// <summary>
+        /// Alters a object
+        /// It must either be a <see cref="Thread"/> or a <see cref="Post"/>
+        /// </summary>
+        /// <param name="o">The object that needs to be altered</param>
+        /// <exception cref="InvalidCastException">Gets thrown when the object Isn't supported</exception>
+        public static void AlterObject(object o)
+        {
+            List<string> parameterToChange;
+            List<string> changes;
+            if (o is ForumThread)
+            {
+                ForumThread forumThread = (ForumThread)o;
+                parameterToChange = new List<string>() { "THREADNAME" };
+                changes = new List<string>() { forumThread.Name };
+                DatabaseManager.AlterThread(forumThread.ID, changes, parameterToChange);
+            }
+            else if (o is Post)
+            {
+                Post post = (Post)o;
+                parameterToChange = new List<string>() { "INHOUD" };
+                changes = new List<string>() { post.Content };
+                DatabaseManager.AlterPost(post.ID, changes, parameterToChange);
             }
             else
             {

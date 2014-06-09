@@ -243,6 +243,47 @@ namespace SE22.Tests
         }
 
         /// <summary>
+        /// Changes the Post
+        /// </summary>
+        /// <param name="id">id used too identify the</param>
+        /// <param name="changes">all changes in the same order as the parameters</param>
+        /// <param name="paramaterToChanged">all parameters in the same order as the changes</param>
+        public static void AlterPost(int id, List<string> changes, List<string> paramaterToChanged)
+        {
+            OracleConnection conn = MakeConnection();
+            conn.Open();
+
+            string mainQuery = "UPDATE POST SET ";
+
+            OracleCommand command = new OracleCommand();
+
+            for (int i = 0; i < changes.Count; i++)
+            {
+                mainQuery += paramaterToChanged[i];
+                mainQuery += " = :" + paramaterToChanged[i];
+                command.Parameters.Add(new OracleParameter(paramaterToChanged[i], changes[i]));
+            }
+
+            mainQuery += " WHERE POSTID = :POSTID";
+            command.CommandText = mainQuery;
+            command.Connection = conn;
+            command.Parameters.Add(new OracleParameter("POSTID", id));
+
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        /// <summary>
         /// Creates a new thread in the database
         /// </summary>
         /// <param name="username">Username of the person that made the new thread</param>
@@ -327,18 +368,21 @@ namespace SE22.Tests
             OracleConnection conn = MakeConnection();
             conn.Open();
 
-            string mainQuery = "UPDATE THREAD SET";
+            string mainQuery = "UPDATE THREAD SET ";
+
+            OracleCommand command = new OracleCommand();
 
             for (int i = 0; i < changes.Count; i++)
             {
                 mainQuery += paramaterToChanged[i];
-                mainQuery += " = " + changes[i];
+                mainQuery += " = :" + paramaterToChanged[i];
+                command.Parameters.Add(new OracleParameter(paramaterToChanged[i], changes[i]));
             }
 
-            mainQuery += "WHERE POSTID = :POSTID";
-
-            OracleCommand command = new OracleCommand(mainQuery, conn);
-            command.Parameters.Add(new OracleParameter("POSTID", id));
+            mainQuery += " WHERE THREADID = :THREADID";
+            command.CommandText = mainQuery;
+            command.Connection = conn;
+            command.Parameters.Add(new OracleParameter("THREADID", id));
 
             try
             {

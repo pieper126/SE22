@@ -102,20 +102,24 @@ namespace SE22
         {
             if (TbName.Text == string.Empty)
             {
-                LoggedInUserValidator.Text = "Please enter a new thread name";
-                LoggedInUserValidator.IsValid = false;
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "My Content textbox is empty ;(! Please enter a new thread name in the textbox" + "');", true);
+                NameValidator.Text = "Please enter a new thread name";
+                NameValidator.IsValid = false;
                 return;
             }
 
             if (currentThreads.Find(x => x.Name == TbName.Text) != null)
             {
-                LoggedInUserValidator.Text = "ThreadName already exists!";
-                LoggedInUserValidator.IsValid = false;
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "ThreadName already exists! Please enter a new thread name in the textbox" + "');", true);
+                NameValidator.Text = "ThreadName already exists!";
+                NameValidator.IsValid = false;
                 return;
             }
             ForumThread thread = (ForumThread)((PostThread)sender).ObjectOfTHeControl;
             thread.Name = TbName.Text;
-            MainAdministration.AlterObject(((PostThread)sender).ObjectOfTHeControl);
+            MainAdministration.AlterObject(thread);
+            NameValidator.IsValid = true;
+            Response.Redirect(Request.RawUrl);
         }
 
         private void Initialization()

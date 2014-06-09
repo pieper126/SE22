@@ -19,7 +19,7 @@
         </div>
         <div>
             <asp:TextBox ID="Tb" runat="server" Style="margin-bottom: 8" Height="182px" Width="603px" TextMode="MultiLine" Wrap ="true"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="A post at least needs some content!" ControlToValidate="Tb" CssClass="text-danger"></asp:RequiredFieldValidator>
+            <asp:RequiredFieldValidator ID="TbRequiredFieldValidator" runat="server" ErrorMessage="A post at least needs some content!" ControlToValidate="Tb" CssClass="text-danger"></asp:RequiredFieldValidator>
         </div>
         <div>
             <asp:Button ID="BtnNewPost" runat="server" Text="Post!" Width="64px" Style="margin-top: 10px" OnClick="BtnNewPost_click" />

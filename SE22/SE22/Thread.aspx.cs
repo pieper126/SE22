@@ -85,17 +85,30 @@ namespace SE22
             }
             if (currentThread == null)
             {
-                LoggedInUserValidator.Text = "Please go to the homepage";
-                LoggedInUserValidator.IsValid = false;
+                TbRequiredFieldValidator.Text = "Please go to the homepage";
+                TbRequiredFieldValidator.IsValid = false;
                 return;
             }
+
             MainAdministration.CreateNewPost((User)Session["user"], Tb.Text, currentThread);
             Response.Redirect(Request.RawUrl);
         }
 
         private void control_ThreadBtnPressed(object sender, EventArgs e)
         {
-            MainAdministration.AlterObject(((PostThread)sender).ObjectOfTHeControl);
+            if (Tb.Text == string.Empty)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "My Content textbox is empty ;(! Please enter new content to replace the old content" + "');", true);
+                TbRequiredFieldValidator.Text = "Please enter new content to replace the old content";
+                TbRequiredFieldValidator.IsValid = false;
+                return;
+            }
+
+            Post post = (Post)((PostThread)sender).ObjectOfTHeControl;
+            post.Content = Tb.Text;
+            MainAdministration.AlterObject(post);
+            TbRequiredFieldValidator.IsValid = true;
+            Response.Redirect(Request.RawUrl);
         }
 
         private void Pageinitialization()

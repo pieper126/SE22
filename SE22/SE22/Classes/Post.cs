@@ -14,7 +14,7 @@ namespace SE22
             this.Username = username;
         }
 
-        public string Content { get; private set; }
+        public string Content { get; set; }
 
         public int ID { get; private set; }
 

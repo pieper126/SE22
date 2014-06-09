@@ -51,7 +51,7 @@ namespace SE22
         /// <summary>
         /// Gets the name of this thread
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets the username of the person that posted this thread

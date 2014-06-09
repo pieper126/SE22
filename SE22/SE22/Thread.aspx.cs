@@ -93,6 +93,11 @@ namespace SE22
             Response.Redirect(Request.RawUrl);
         }
 
+        private void control_ThreadBtnPressed(object sender, EventArgs e)
+        {
+            MainAdministration.AlterObject(((PostThread)sender).ObjectOfTHeControl);
+        }
+
         private void Pageinitialization()
         {
             if (currentThread.Posts.Count < 5)
@@ -112,6 +117,8 @@ namespace SE22
                     control.EnableTextBox();
                     control.EnableDelete();
                     control.Username = post.Username;
+                    control.EnableAlter();
+                    control.ThreadBtnPressed += control_ThreadBtnPressed;
                     panel.Controls.Add(control);
                 }
 
@@ -152,6 +159,8 @@ namespace SE22
                     control.EnableTextBox();
                     control.Username = post.Username;
                     control.EnableDelete();
+                    control.EnableAlter();
+                    control.ThreadBtnPressed += control_ThreadBtnPressed;
                     panel.Controls.Add(control);
                 }
             }

@@ -98,6 +98,26 @@ namespace SE22
             Response.Redirect(Request.RawUrl);
         }
 
+        private void control_ThreadBtnPressed(object sender, EventArgs e)
+        {
+            if (TbName.Text == string.Empty)
+            {
+                LoggedInUserValidator.Text = "Please enter a new thread name";
+                LoggedInUserValidator.IsValid = false;
+                return;
+            }
+
+            if (currentThreads.Find(x => x.Name == TbName.Text) != null)
+            {
+                LoggedInUserValidator.Text = "ThreadName already exists!";
+                LoggedInUserValidator.IsValid = false;
+                return;
+            }
+            ForumThread thread = (ForumThread)((PostThread)sender).ObjectOfTHeControl;
+            thread.Name = TbName.Text;
+            MainAdministration.AlterObject(((PostThread)sender).ObjectOfTHeControl);
+        }
+
         private void Initialization()
         {
             if (currentThreads.Count < 5)
@@ -118,6 +138,8 @@ namespace SE22
                     control.EnableLabel();
                     control.EnableGo();
                     control.EnableDelete();
+                    control.EnableAlter();
+                    control.ThreadBtnPressed += control_ThreadBtnPressed;
                     panel.Controls.Add(control);
                 }
 
@@ -159,6 +181,8 @@ namespace SE22
                     control.EnableLabel();
                     control.EnableGo();
                     control.EnableDelete();
+                    control.EnableAlter();
+                    control.ThreadBtnPressed += control_ThreadBtnPressed;
                     panel.Controls.Add(control);
                 }
             }

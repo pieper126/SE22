@@ -253,7 +253,7 @@ namespace SE22
             OracleConnection conn = MakeConnection();
             conn.Open();
 
-            string mainQuery = "UPDATE POST SET";
+            string mainQuery = "UPDATE POST SET ";
 
             OracleCommand command = new OracleCommand();
 
@@ -264,7 +264,7 @@ namespace SE22
                 command.Parameters.Add(new OracleParameter(paramaterToChanged[i], changes[i]));
             }
 
-            mainQuery += "WHERE POSTID = :POSTID";
+            mainQuery += " WHERE POSTID = :POSTID";
             command.CommandText = mainQuery;
             command.Connection = conn;
             command.Parameters.Add(new OracleParameter("POSTID", id));
@@ -368,7 +368,7 @@ namespace SE22
             OracleConnection conn = MakeConnection();
             conn.Open();
 
-            string mainQuery = "UPDATE THREAD SET";
+            string mainQuery = "UPDATE THREAD SET ";
 
             OracleCommand command = new OracleCommand();
 
@@ -379,7 +379,7 @@ namespace SE22
                 command.Parameters.Add(new OracleParameter(paramaterToChanged[i], changes[i]));
             }
 
-            mainQuery += "WHERE THREAD = :THREADID";
+            mainQuery += " WHERE THREADID = :THREADID";
             command.CommandText = mainQuery;
             command.Connection = conn;
             command.Parameters.Add(new OracleParameter("THREADID", id));

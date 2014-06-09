@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" CodeBehind="SubCategory.aspx.cs" Inherits="SE22.SubCategory" %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="Site.Master" CodeBehind="SubCategory.aspx.cs" Inherits="SE22.SubCategory" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">  
     <link href="Style.css" rel="stylesheet" type="text/css" />  

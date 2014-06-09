@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Thread" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Thread.aspx.cs" Inherits="SE22.Thread" %>
+﻿<%@ Page Title="Thread" Language="C#" MasterPageFile="Site.Master" AutoEventWireup="true" CodeBehind="Thread.aspx.cs" Inherits="SE22.Thread" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 

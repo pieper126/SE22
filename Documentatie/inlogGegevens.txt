@@ -1,0 +1,5 @@
+username: example
+password: password
+
+username example2 <--- is admin
+password: password
